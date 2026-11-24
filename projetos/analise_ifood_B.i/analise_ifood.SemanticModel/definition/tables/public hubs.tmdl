@@ -1,0 +1,69 @@
+table 'public hubs'
+	lineageTag: 25e62dae-2da3-413b-82d4-61f0af46767f
+
+	column hub_id
+		dataType: string
+		isNullable: false
+		lineageTag: bb2fd0a6-75cf-4b6b-a664-743c3bd1531f
+		summarizeBy: none
+		sourceColumn: hub_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hub_name
+		dataType: string
+		lineageTag: 111376c2-5f27-491f-8775-2ee62d59454f
+		summarizeBy: none
+		sourceColumn: hub_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column hub_city
+		dataType: string
+		lineageTag: 66626e13-1c89-4022-b8ba-c450536a78bc
+		summarizeBy: none
+		sourceColumn: hub_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column hub_state
+		dataType: string
+		lineageTag: 0df51fe1-1cac-4aef-a6b1-42782f88a92f
+		summarizeBy: none
+		sourceColumn: hub_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column hub_latitude
+		dataType: double
+		lineageTag: 3078684c-f105-403e-a15c-b71410359a51
+		summarizeBy: none
+		sourceColumn: hub_latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hub_longitude
+		dataType: double
+		lineageTag: 69a322a2-8be9-4c52-9ba4-fd3674f9143b
+		summarizeBy: none
+		sourceColumn: hub_longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public hubs' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "hubs.csv"), [Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"hub_id", "hub_name", "hub_city", "hub_state", "hub_latitude", "hub_longitude"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"hub_id", type text}, {"hub_name", type text}, {"hub_city", type text}, {"hub_state", type text}, {"hub_latitude", type number}, {"hub_longitude", type number}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

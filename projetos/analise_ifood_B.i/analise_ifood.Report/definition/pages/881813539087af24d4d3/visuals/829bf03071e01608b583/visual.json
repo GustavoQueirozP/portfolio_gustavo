@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "829bf03071e01608b583",
+  "position": {
+    "x": 961,
+    "y": 72,
+    "z": 1300,
+    "height": 84,
+    "width": 303,
+    "tabOrder": 1300
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Distância Média das Entregas"
+                }
+              },
+              "queryRef": "Medidas.Distância Média das Entregas",
+              "nativeQueryRef": "Distância Média das Entregas (Km)",
+              "displayName": "Distância mediana (km)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas"
+                  }
+                },
+                "Property": "Distância Média das Entregas"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

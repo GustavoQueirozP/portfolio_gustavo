@@ -1,0 +1,41 @@
+table 'public channels'
+	lineageTag: 321ebbbc-31b4-41d0-9a80-9fcd32e5bf8b
+
+	column channel_id
+		dataType: string
+		isNullable: false
+		lineageTag: 3e872c1e-bb40-42dd-8631-83e57eefd314
+		summarizeBy: none
+		sourceColumn: channel_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_name
+		dataType: string
+		lineageTag: 0f7492cc-f684-4017-8de0-8dee2557e923
+		summarizeBy: none
+		sourceColumn: channel_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_type
+		dataType: string
+		lineageTag: 3e5da303-552a-483d-aa7f-1adcb8f11a70
+		summarizeBy: none
+		sourceColumn: channel_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public channels' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "channels.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"channel_id", "channel_name", "channel_type"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"channel_id", type text}, {"channel_name", type text}, {"channel_type", type text}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

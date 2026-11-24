@@ -1,0 +1,130 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "33f3b0afe75323a58fb0",
+  "position": {
+    "x": 428,
+    "y": 168,
+    "z": 2100,
+    "height": 536,
+    "width": 440,
+    "tabOrder": 2100
+  },
+  "visual": {
+    "visualType": "map",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public hubs"
+                    }
+                  },
+                  "Property": "hub_name"
+                }
+              },
+              "queryRef": "public hubs.hub_name",
+              "nativeQueryRef": "hub_name"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Faturamento Total"
+                }
+              },
+              "queryRef": "Medidas.Faturamento Total",
+              "nativeQueryRef": "Faturamento Total",
+              "displayName": "Faturamento"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public hubs"
+                    }
+                  },
+                  "Property": "hub_longitude"
+                }
+              },
+              "queryRef": "public hubs.hub_longitude",
+              "nativeQueryRef": "hub_longitude"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public hubs"
+                    }
+                  },
+                  "Property": "hub_latitude"
+                }
+              },
+              "queryRef": "public hubs.hub_latitude",
+              "nativeQueryRef": "hub_latitude"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Faturamento por hub'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

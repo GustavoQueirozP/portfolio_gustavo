@@ -1,0 +1,79 @@
+table 'public stores'
+	lineageTag: f97c9b21-ad67-4235-81ce-367e7cd96e50
+
+	column store_id
+		dataType: string
+		isNullable: false
+		lineageTag: 08f85901-3f67-4938-818b-10ffaf5cdf3a
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hub_id
+		dataType: string
+		lineageTag: 41d728ca-2bff-46c5-82a1-423d6929ce15
+		summarizeBy: none
+		sourceColumn: hub_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_name
+		dataType: string
+		lineageTag: 5316c769-ebbe-4b11-bb51-a1d740ae5472
+		summarizeBy: none
+		sourceColumn: store_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_segment
+		dataType: string
+		lineageTag: 4a7bb517-f2fa-4a89-b5ea-223c821d3aa4
+		summarizeBy: none
+		sourceColumn: store_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_plan_price
+		dataType: double
+		lineageTag: 404f5e48-fa00-4008-99b2-47853246ae5c
+		summarizeBy: sum
+		sourceColumn: store_plan_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column store_latitude
+		dataType: double
+		lineageTag: 2e65b18d-2dee-4259-94fe-11d74f53bbb5
+		summarizeBy: sum
+		sourceColumn: store_latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column store_longitude
+		dataType: double
+		lineageTag: 17bc160b-876e-48db-a632-c8dd002d5a16
+		summarizeBy: sum
+		sourceColumn: store_longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public stores' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "stores.csv"), [Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"store_id", "hub_id", "store_name", "store_segment", "store_plan_price", "store_latitude", "store_longitude"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"store_id", type text}, {"hub_id", type text}, {"store_name", type text}, {"store_segment", type text}, {"store_plan_price", type number}, {"store_latitude", type number}, {"store_longitude", type number}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

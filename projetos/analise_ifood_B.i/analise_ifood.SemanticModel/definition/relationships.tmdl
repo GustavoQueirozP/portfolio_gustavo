@@ -1,0 +1,30 @@
+relationship 7e91dce1-6817-403b-9de8-32f01fb2f0eb
+	fromColumn: 'public orders'.channel_id
+	toColumn: 'public channels'.channel_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4e7aba2a-8b38-418c-8418-b393f715d8cc
+	fromColumn: 'public orders'.store_id
+	toColumn: 'public stores'.store_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 188b8fa3-78e4-407c-9f54-f9544da60f20
+	fromColumn: 'public stores'.hub_id
+	toColumn: 'public hubs'.hub_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 53631105-4e17-6e7c-8f95-f74ff207c9bc
+	fromColumn: 'public deliveries'.delivery_order_id
+	toColumn: 'public orders'.delivery_order_id
+
+relationship c2f70720-2004-f881-504f-717abcf1ab08
+	fromColumn: 'public deliveries'.driver_id
+	toColumn: 'public drivers'.driver_id
+
+relationship aa955f4a-eeb5-5d12-3144-bab9af9cab99
+	fromColumn: 'public payments'.payment_order_id
+	toColumn: 'public orders'.payment_order_id
+

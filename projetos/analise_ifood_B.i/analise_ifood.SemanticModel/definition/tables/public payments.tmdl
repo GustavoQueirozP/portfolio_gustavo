@@ -1,0 +1,69 @@
+table 'public payments'
+	lineageTag: 9a378921-7afb-42fb-8477-bb545f23c310
+
+	column payment_id
+		dataType: string
+		isNullable: false
+		lineageTag: 63b14125-0d39-4a6a-8df8-f25caa26cac5
+		summarizeBy: none
+		sourceColumn: payment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_order_id
+		dataType: string
+		lineageTag: 2973619d-3d41-4de3-b906-960d15d18226
+		summarizeBy: none
+		sourceColumn: payment_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_amount
+		dataType: double
+		lineageTag: dc3816cf-3fdd-4a11-ba39-032a08f1e76d
+		summarizeBy: sum
+		sourceColumn: payment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_fee
+		dataType: double
+		lineageTag: a15b0fb5-a5da-4e86-8cdd-cfcacf4ac71b
+		summarizeBy: sum
+		sourceColumn: payment_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: 9cab1df9-e63c-409b-bd3e-c3daeb58f2af
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_status
+		dataType: string
+		lineageTag: 2d8f03b0-5bd6-488a-a454-02eaff188ca5
+		summarizeBy: none
+		sourceColumn: payment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public payments' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "payments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"payment_id", "payment_order_id", "payment_amount", "payment_fee", "payment_method", "payment_status"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"payment_id", type text}, {"payment_order_id", type text}, {"payment_amount", type number}, {"payment_fee", type number}, {"payment_method", type text}, {"payment_status", type text}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

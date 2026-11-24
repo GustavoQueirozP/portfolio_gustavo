@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "48f88c73027fda88e405",
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Faturamento Perdido"
+                }
+              },
+              "queryRef": "Medidas.Faturamento Perdido",
+              "nativeQueryRef": "Faturamento Perdido",
+              "displayName": "Faturamento cancelado"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "position": {
+    "x": 961,
+    "y": 72,
+    "z": 1300,
+    "height": 84,
+    "width": 303,
+    "tabOrder": 1300
+  }
+}

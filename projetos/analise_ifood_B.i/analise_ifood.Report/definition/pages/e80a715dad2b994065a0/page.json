@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "e80a715dad2b994065a0",
+  "displayName": "Lojas e Segmentos",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "991ba7796172d78accce",
+      "target": "33f3b0afe75323a58fb0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "991ba7796172d78accce",
+      "target": "9dcf377eda11c2d4c3bf",
+      "type": "DataFilter"
+    },
+    {
+      "source": "991ba7796172d78accce",
+      "target": "ab48ab50149c5c2c2063",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9dcf377eda11c2d4c3bf",
+      "target": "991ba7796172d78accce",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9dcf377eda11c2d4c3bf",
+      "target": "33f3b0afe75323a58fb0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9dcf377eda11c2d4c3bf",
+      "target": "ab48ab50149c5c2c2063",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ab48ab50149c5c2c2063",
+      "target": "9dcf377eda11c2d4c3bf",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ab48ab50149c5c2c2063",
+      "target": "991ba7796172d78accce",
+      "type": "DataFilter"
+    }
+  ]
+}

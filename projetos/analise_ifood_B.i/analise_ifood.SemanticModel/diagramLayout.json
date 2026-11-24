@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 178.2493163987395,
+            "y": 57.185530943330633
+          },
+          "nodeIndex": "public channels",
+          "nodeLineageTag": "321ebbbc-31b4-41d0-9a80-9fcd32e5bf8b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 687.04488894792928,
+            "y": 559.50202883348993
+          },
+          "nodeIndex": "public deliveries",
+          "nodeLineageTag": "64814e49-1a34-4be9-bb02-59f1dd194ad2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 979.50088783136266,
+            "y": 565.18069791938433
+          },
+          "nodeIndex": "public drivers",
+          "nodeLineageTag": "86a9c46f-62bb-48b4-9240-cb67422256ce",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1331.059439677761,
+            "y": 87.378655128811516
+          },
+          "nodeIndex": "public hubs",
+          "nodeLineageTag": "25e62dae-2da3-413b-82d4-61f0af46767f",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 563.92355810454876,
+            "y": 0
+          },
+          "nodeIndex": "public orders",
+          "nodeLineageTag": "c7dc98fc-e12d-4d3a-a064-1b9b96434481",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 68.3863789727792,
+            "y": 327.64605786422226
+          },
+          "nodeIndex": "public payments",
+          "nodeLineageTag": "9a378921-7afb-42fb-8477-bb545f23c310",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 921.4170284718183,
+            "y": 21.139997208583434
+          },
+          "nodeIndex": "public stores",
+          "nodeLineageTag": "f97c9b21-ad67-4235-81ce-367e7cd96e50",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1546.6730607049817,
+            "y": 327.75101441674497
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "f4671775-adcb-4c1f-9ad8-29ae8642af76",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 70.95554390096882,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

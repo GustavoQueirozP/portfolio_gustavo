@@ -1,0 +1,25 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["public channels","public deliveries","public drivers","public hubs","public orders","public payments","public stores","Medidas","PastaDados"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'public channels'
+ref table 'public deliveries'
+ref table 'public drivers'
+ref table 'public hubs'
+ref table 'public orders'
+ref table 'public payments'
+ref table 'public stores'
+ref table Medidas
+
+ref cultureInfo pt-BR
+

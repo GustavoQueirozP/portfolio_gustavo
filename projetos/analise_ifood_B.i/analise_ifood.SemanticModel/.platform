@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "analise_ifood"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d5064897-aab1-42a4-bf15-3fadb3e0e3a8"
+  }
+}

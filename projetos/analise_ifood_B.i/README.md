@@ -1,40 +1,22 @@
-# 📊 Projeto de Business Intelligence - Análise de Entregas iFood
-Este projeto em Power BI faz parte do portfólio de análise de dados de Gustavo Queiroz Pinto e tem como base o dataset Brazilian Delivery Center do Kaggle, simulando dados operacionais de pedidos, entregas, motoristas, canais de venda e lojas.
+# Painel Power BI — operação de delivery (base iFood / Delivery Center)
 
-## 🔍 Objetivo
-O objetivo deste painel é visualizar e analisar indicadores chave de desempenho da operação logística, comercial e de entrega da plataforma, auxiliando a tomada de decisão estratégica e operacional.
+Painel em Power BI com três páginas (Visão geral, Lojas e segmentos, Entregas) sobre a base pública
+[Delivery Center: Food & Goods orders in Brazil](https://www.kaggle.com/datasets/nosbielcs/brazilian-delivery-center)
+(jan–abr/2021, 368.999 pedidos). Case no portfólio: `index.html`; PDF do painel: `analise_ifood.pdf`.
 
-## ⚙️ Fontes de Dados
-PostgreSQL (base criada a partir dos arquivos .csv)
+## Arquivos
+- `analise_ifood.pbip` + `analise_ifood.Report/` + `analise_ifood.SemanticModel/`: o projeto no formato
+  Power BI Project (modelo em TMDL, páginas em PBIR/JSON). É a versão atual.
+- `analise_ifood.pbix`: versão antiga, que lia de um PostgreSQL local (DirectQuery). Mantida como histórico.
+- `dashboard/`: versão web estática do mesmo painel (ECharts), para quem não tem Power BI.
+- `MODELO.md`: medidas e visuais extraídos do `.pbix` original.
 
-Tabelas utilizadas:
-orders
-deliveries
-drivers
-stores
-hubs
-channels
-payments
+## Como abrir
+1. Abra `analise_ifood.pbip` no Power BI Desktop.
+2. Em Transformar dados → Gerenciar parâmetros, aponte `PastaDados` para a pasta `projetos/analise_ifood/`
+   deste repositório (onde estão os CSVs) e clique em Atualizar.
 
-## 🧠 Métricas Criadas com DAX
-Algumas medidas implementadas:
-Faturamento Total
-Número de Pedidos
-Ticket Médio
-Cancelamentos (%)
-Total de Entregas
-Distância Média por Entrega
-Pedidos por Hora / Mês
-
-## 📁 Estrutura do Relatório
-O projeto está sendo dividido em páginas temáticas, com dashboards específicos para:
-Visão Geral
-Lojas e Segmentos
-Entregas
-Canais de Venda
-Análise Temporal
-(Outras páginas serão adicionadas futuramente)
-
-## 🚧 Status do Projeto
-⚠️ O visual das dashboards ainda está em construção.
-Os gráficos principais já foram inseridos e as medidas estão funcionando, mas o layout e a estética final ainda serão aprimorados.
+## Decisões
+- Faturamento = valor bruto dos pedidos, incluindo cancelados (bate com o notebook da mesma base).
+- Distância = **mediana**: 509 entregas com mais de 50 km (até 7.251 km) somam 73,5% dos km e distorcem a média.
+- Tema próprio (`StaticResources/RegisteredResources/TemaPortfolioIfood.json`).

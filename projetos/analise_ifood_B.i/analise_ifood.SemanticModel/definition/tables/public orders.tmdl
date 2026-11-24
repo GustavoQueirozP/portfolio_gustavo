@@ -1,0 +1,272 @@
+table 'public orders'
+	lineageTag: c7dc98fc-e12d-4d3a-a064-1b9b96434481
+
+	column order_id
+		dataType: string
+		isNullable: false
+		lineageTag: 9e8128ac-51a6-4337-bfb7-201bfa471cdf
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: string
+		lineageTag: fdca321b-54b1-4112-a861-9721837f5a76
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_id
+		dataType: string
+		lineageTag: 51ca2466-1e18-4b8d-a460-779492a2ea39
+		summarizeBy: none
+		sourceColumn: channel_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_order_id
+		dataType: string
+		lineageTag: e67fcd88-ff32-4f29-855a-0c60f105870b
+		summarizeBy: none
+		sourceColumn: payment_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_order_id
+		dataType: string
+		lineageTag: 4a60b337-e130-4d05-8f6b-eb9b39f2fbd8
+		summarizeBy: none
+		sourceColumn: delivery_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: 73da38ac-2670-4d06-bd01-100077532355
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_amount
+		dataType: double
+		lineageTag: 30923d89-baae-44c7-ad60-5f2795468268
+		summarizeBy: sum
+		sourceColumn: order_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_created_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 6317e41e-1876-4c04-a088-26142131d87b
+		summarizeBy: sum
+		sourceColumn: order_created_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_created_minute
+		dataType: int64
+		formatString: 0
+		lineageTag: 4410d90c-16dc-4077-83f3-745e2bbf5b76
+		summarizeBy: sum
+		sourceColumn: order_created_minute
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_created_day
+		dataType: int64
+		formatString: 0
+		lineageTag: 73d54613-33b7-47f6-80e0-86070ac170d1
+		summarizeBy: sum
+		sourceColumn: order_created_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_created_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a137ddc-6029-4223-a36b-77565557fa0b
+		summarizeBy: sum
+		sourceColumn: order_created_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_created_year
+		dataType: int64
+		formatString: 0
+		lineageTag: a515a4bd-cd24-470b-b33d-ac448ed55693
+		summarizeBy: sum
+		sourceColumn: order_created_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivery_fee
+		dataType: int64
+		formatString: 0
+		lineageTag: 54aae920-d5c0-46a4-b7a9-3174fb3ccebc
+		summarizeBy: sum
+		sourceColumn: order_delivery_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivery_cost
+		dataType: int64
+		formatString: 0
+		lineageTag: 03ed9ed0-a49b-4de3-a6e4-75798364a880
+		summarizeBy: sum
+		sourceColumn: order_delivery_cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_created
+		dataType: string
+		lineageTag: 1723573d-4e03-4cd8-aa10-c2f411db5a4e
+		summarizeBy: none
+		sourceColumn: order_moment_created
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_accepted
+		dataType: string
+		lineageTag: d914bef8-633d-45b5-ae01-a35cf8361767
+		summarizeBy: none
+		sourceColumn: order_moment_accepted
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_ready
+		dataType: string
+		lineageTag: fb56f560-94e9-4ca5-9d1f-43b6ff701eab
+		summarizeBy: none
+		sourceColumn: order_moment_ready
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_collected
+		dataType: string
+		lineageTag: e1f3f1f2-df3a-4e55-95a5-ad7742176142
+		summarizeBy: none
+		sourceColumn: order_moment_collected
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_in_expedition
+		dataType: string
+		lineageTag: ca56fbff-9bc0-4e0a-b7d1-cee8b1d79e21
+		summarizeBy: none
+		sourceColumn: order_moment_in_expedition
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_delivering
+		dataType: string
+		lineageTag: 66693b05-a3bc-47af-a384-7c434cd365d8
+		summarizeBy: none
+		sourceColumn: order_moment_delivering
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_delivered
+		dataType: string
+		lineageTag: a9a0e19f-e08c-4ba7-a991-ebec965b3e92
+		summarizeBy: none
+		sourceColumn: order_moment_delivered
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_moment_finished
+		dataType: string
+		lineageTag: 79929339-91e9-43af-a3bb-3376d4c14c24
+		summarizeBy: none
+		sourceColumn: order_moment_finished
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_metric_collected_time
+		dataType: double
+		lineageTag: 970b35d8-d7bf-4b2d-b24f-50f81b31aa85
+		summarizeBy: sum
+		sourceColumn: order_metric_collected_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_paused_time
+		dataType: double
+		lineageTag: af4492b1-6b9b-440c-b13d-8e0a5ae10894
+		summarizeBy: sum
+		sourceColumn: order_metric_paused_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_production_time
+		dataType: double
+		lineageTag: 53ba4a3d-2b75-4204-ae7a-b4d4dc473009
+		summarizeBy: sum
+		sourceColumn: order_metric_production_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_walking_time
+		dataType: double
+		lineageTag: 7e8a50c5-afa8-4258-8687-a54c4380a29b
+		summarizeBy: sum
+		sourceColumn: order_metric_walking_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_expediton_speed_time
+		dataType: double
+		lineageTag: 5a3436be-e0d2-4a8f-b8bf-d079bf80ad12
+		summarizeBy: sum
+		sourceColumn: order_metric_expediton_speed_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_transit_time
+		dataType: double
+		lineageTag: 584245b8-5ec1-4ce4-a424-05e91b1a35a1
+		summarizeBy: sum
+		sourceColumn: order_metric_transit_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_metric_cycle_time
+		dataType: double
+		lineageTag: 1e42be33-2c94-4dcc-8e38-8b04f6d02894
+		summarizeBy: sum
+		sourceColumn: order_metric_cycle_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public orders' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "orders.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"order_id", "store_id", "channel_id", "payment_order_id", "delivery_order_id", "order_status", "order_amount", "order_created_hour", "order_created_minute", "order_created_day", "order_created_month", "order_created_year", "order_delivery_fee", "order_delivery_cost", "order_moment_created", "order_moment_accepted", "order_moment_ready", "order_moment_collected", "order_moment_in_expedition", "order_moment_delivering", "order_moment_delivered", "order_moment_finished", "order_metric_collected_time", "order_metric_paused_time", "order_metric_production_time", "order_metric_walking_time", "order_metric_expediton_speed_time", "order_metric_transit_time", "order_metric_cycle_time"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"order_id", type text}, {"store_id", type text}, {"channel_id", type text}, {"payment_order_id", type text}, {"delivery_order_id", type text}, {"order_status", type text}, {"order_amount", type number}, {"order_created_hour", Int64.Type}, {"order_created_minute", Int64.Type}, {"order_created_day", Int64.Type}, {"order_created_month", Int64.Type}, {"order_created_year", Int64.Type}, {"order_delivery_fee", Int64.Type}, {"order_delivery_cost", Int64.Type}, {"order_moment_created", type text}, {"order_moment_accepted", type text}, {"order_moment_ready", type text}, {"order_moment_collected", type text}, {"order_moment_in_expedition", type text}, {"order_moment_delivering", type text}, {"order_moment_delivered", type text}, {"order_moment_finished", type text}, {"order_metric_collected_time", type number}, {"order_metric_paused_time", type number}, {"order_metric_production_time", type number}, {"order_metric_walking_time", type number}, {"order_metric_expediton_speed_time", type number}, {"order_metric_transit_time", type number}, {"order_metric_cycle_time", type number}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+
