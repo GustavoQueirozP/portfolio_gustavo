@@ -1,0 +1,10 @@
+/* A leitura e as figuras seguem o modelo Editorial do portfólio. */
+.data-credit { margin: 2em 0; }
+.data-credit img { display: block; max-width: 100%; height: auto; }
+.data-credit p { margin: 0.6em 0 0; }
+.case-page figure > a { display: block; border: 0; }
+.case-page figure > a:hover { opacity: 0.9; }
+.case-page caption { text-align: left; margin-bottom: 1em; }
+.case-page td { font-variant-numeric: tabular-nums; }
+.case-page th[scope="row"] { font-weight: 600; }
+.case-page .table-wrapper:focus-visible { outline: 2px solid #0069a8; outline-offset: 4px; }
