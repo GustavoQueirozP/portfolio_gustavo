@@ -70,6 +70,8 @@ def export(folder, filename):
                             raise ValueError(f"{folder}, célula {number}: {text[:1200]}")
             subprocess.run([
                 sys.executable, "-m", "jupyter", "nbconvert", "--to", "html",
+                "--template=portfolio",
+                f"--TemplateExporter.extra_template_basedirs={ROOT / 'scripts' / 'templates'}",
                 "--output=notebook", f"--output-dir={working}", str(executed),
             ], cwd=directory, env=env, check=True, timeout=120)
         finally:

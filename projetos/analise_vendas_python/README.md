@@ -24,3 +24,5 @@ A amostra cobre cerca de um ano e termina em 2011; clientes sem ID ficam fora do
 ## Como executar
 
 Com o ambiente do repositório: abra `churn_rfm_forecast.ipynb` e execute as células na ordem. O caminho do arquivo é relativo ao diretório do notebook.
+
+Os textos, tabelas de achados e gráficos usam formatação pt-BR via `../../scripts/formatacao_br.py`, sem depender do locale do sistema. Para executar e reexportar os três notebooks, rode `uv run python scripts/exportar_notebooks.py` na raiz do repositório.

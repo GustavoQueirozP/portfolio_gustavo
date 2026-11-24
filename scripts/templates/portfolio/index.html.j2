@@ -1,0 +1,5 @@
+{% extends 'lab/index.html.j2' %}
+{# Inclui o alt antes da validação do nbconvert, sem suprimir seus avisos. #}
+{% block data_png scoped %}
+{{ super() | replace('<img ', '<img alt="Gráfico gerado pela célula; consulte os dados e o código adjacentes" ') }}
+{% endblock data_png %}

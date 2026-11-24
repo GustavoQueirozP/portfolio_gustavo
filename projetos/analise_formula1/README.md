@@ -1,28 +1,32 @@
-# F?rmula 1: piloto ou carro?
+# Fórmula 1: piloto ou carro?
 
-**Pergunta de neg?cio:** quando dois pilotos dividem o mesmo carro na mesma temporada, com que frequ?ncia um supera o outro? A an?lise compara colegas de equipe na mesma corrida para reduzir a diferen?a de equipamento.
+**Pergunta de negócio:** quando dois pilotos dividem o mesmo carro na mesma temporada, com que frequência um supera o outro? A análise compara colegas de equipe na mesma corrida para reduzir a diferença de equipamento.
 
-## Dados e m?todo
+## Dados e método
 
-- Fonte: CSVs hist?ricos locais, da cole??o [Formula 1 World Championship (1950?2024), de Rohan Rao no Kaggle](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020), baseada no Ergast Motor Racing Data.
-- Per?odo: 1950?2024; exclu?das as 500 Milhas de Indian?polis, inclu?das na base como etapa do campeonato nos anos iniciais, mas n?o disputadas como GP de F1.
-- Licen?a: os CSVs locais n?o identificam a licen?a do snapshot. Confira os termos da p?gina do Kaggle e dos dados Ergast antes de redistribuir.
-- A compara??o usa posi??o final classificada no mesmo GP, equipe e temporada; pontos n?o s?o comparados entre eras. Para contexto, a participa??o de pontos da equipe ? calculada dentro da temporada.
-- Ranking hist?rico: taxa de vit?rias contra colegas, exigindo ao menos 30 confrontos diretos.
+- Fonte: CSVs históricos locais, da coleção [Formula 1 World Championship (1950–2024), de Rohan Rao no Kaggle](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020), baseada no Ergast Motor Racing Data.
+- Período: 1950–2024; excluídas as 500 Milhas de Indianápolis, incluídas na base como etapa do campeonato nos anos iniciais, mas não disputadas como GP de F1.
+- Licença: os CSVs locais não identificam a licença do snapshot. Confira os termos da página do Kaggle e dos dados Ergast antes de redistribuir.
+- A comparação usa posição final classificada no mesmo GP, equipe e temporada; pontos não são comparados entre eras. Para contexto, a participação de pontos da equipe é calculada dentro da temporada.
+- Ranking histórico: média por GP da fração de colegas superados, exigindo ao menos 30 GPs comparáveis.
 
 ## Resultados calculados
 
 - O recorte tem **1.114 GPs** e **26.292 resultados classificados**.
 - Foram observados **34.846 confrontos dirigidos piloto-colega** na mesma equipe e corrida.
-- **40,8%** dos recortes piloto-temporada-equipe superaram 50% de vit?rias contra colegas.
-- A participa??o mediana de uma equipe nos pontos da temporada foi **3,6%**.
-- Entre pilotos com pelo menos 30 disputas, **Juan Fangio** lidera com **82,6%** de vit?rias em **201** confrontos.
+- **40,0%** dos recortes piloto-temporada-equipe superaram 50% na média por GP de colegas superados.
+- A participação mediana de uma equipe nos pontos da temporada foi **3,6%**.
+- Entre pilotos com pelo menos 30 GPs comparáveis, **Juan Fangio** lidera com **79,7%** de colegas superados em **51 GPs comparáveis**.
 
-Esses resultados descrevem desempenho relativo nas chegadas classificadas; n?o isolam talento, confiabilidade, estrat?gia ou qualidade do carro e n?o demonstram causalidade. As regras, os grids e a cobertura hist?rica mudam entre temporadas.
+Esses resultados descrevem desempenho relativo nas chegadas classificadas; não isolam talento, confiabilidade, estratégia ou qualidade do carro e não demonstram causalidade. As regras, os grids e a cobertura histórica mudam entre temporadas.
+
+Cada GP recebe o mesmo peso; com vários colegas, primeiro calculamos a fração superada naquela corrida.
 
 ## Arquivos
 
-- [Notebook execut?vel](analise_formula1.ipynb)
+- [Notebook executável](analise_formula1.ipynb)
 - [Notebook HTML](notebook.html)
-- [P?gina do projeto](index.html)
-- CSVs usados pela an?lise nesta pasta.
+- [Página do projeto](index.html)
+- CSVs usados pela análise nesta pasta.
+
+Os textos, tabelas de achados e gráficos usam formatação pt-BR via `../../scripts/formatacao_br.py`, sem depender do locale do sistema. Para executar e reexportar os três notebooks, rode `uv run python scripts/exportar_notebooks.py` na raiz do repositório.
