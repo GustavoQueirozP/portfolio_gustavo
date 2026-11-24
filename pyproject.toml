@@ -1,0 +1,21 @@
+[project]
+name = "portfolio-gustavo"
+version = "0.2.0"
+description = "Portfólio de análise de dados: notebooks, scripts de dados e verificações do site"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "prophet",
+    "duckdb",
+    "jupyter",
+    "nbconvert",
+    "pbixray",
+    "pytest",
+]
+
+[tool.uv]
+package = false
