@@ -1,52 +1,28 @@
-# 🏁 Análise F1: O melhor piloto tinha o melhor carro?
+# F?rmula 1: piloto ou carro?
 
-Projeto de análise de dados da Fórmula 1 para responder à pergunta:  
-**"O melhor piloto só venceu porque tinha o melhor carro?"**
+**Pergunta de neg?cio:** quando dois pilotos dividem o mesmo carro na mesma temporada, com que frequ?ncia um supera o outro? A an?lise compara colegas de equipe na mesma corrida para reduzir a diferen?a de equipamento.
 
-Utilizamos dados históricos da F1 para identificar:
+## Dados e m?todo
 
-- O piloto com mais vitórias por ano
-- A equipe com mais vitórias por ano
-- Se o melhor piloto estava ou não no melhor carro
-- Os pilotos que se destacaram mesmo sem ter o melhor carro
-- O ranking dos 10 pilotos com mais vitórias de todos os tempos
+- Fonte: CSVs hist?ricos locais, da cole??o [Formula 1 World Championship (1950?2024), de Rohan Rao no Kaggle](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020), baseada no Ergast Motor Racing Data.
+- Per?odo: 1950?2024; exclu?das as 500 Milhas de Indian?polis, inclu?das na base como etapa do campeonato nos anos iniciais, mas n?o disputadas como GP de F1.
+- Licen?a: os CSVs locais n?o identificam a licen?a do snapshot. Confira os termos da p?gina do Kaggle e dos dados Ergast antes de redistribuir.
+- A compara??o usa posi??o final classificada no mesmo GP, equipe e temporada; pontos n?o s?o comparados entre eras. Para contexto, a participa??o de pontos da equipe ? calculada dentro da temporada.
+- Ranking hist?rico: taxa de vit?rias contra colegas, exigindo ao menos 30 confrontos diretos.
 
----
+## Resultados calculados
 
-## 📌 Sobre o Projeto
+- O recorte tem **1.114 GPs** e **26.292 resultados classificados**.
+- Foram observados **34.846 confrontos dirigidos piloto-colega** na mesma equipe e corrida.
+- **40,8%** dos recortes piloto-temporada-equipe superaram 50% de vit?rias contra colegas.
+- A participa??o mediana de uma equipe nos pontos da temporada foi **3,6%**.
+- Entre pilotos com pelo menos 30 disputas, **Juan Fangio** lidera com **82,6%** de vit?rias em **201** confrontos.
 
-- 📅 Dataset: [F1 Dataset do Kaggle](https://www.kaggle.com/datasets)
-- 📍 Linguagem: Python (pandas, matplotlib, seaborn)
-- 💻 Ferramenta: Jupyter Notebook
-- 🎯 Objetivo: Explorar dados da F1 para analisar desempenho de pilotos vs equipes
+Esses resultados descrevem desempenho relativo nas chegadas classificadas; n?o isolam talento, confiabilidade, estrat?gia ou qualidade do carro e n?o demonstram causalidade. As regras, os grids e a cobertura hist?rica mudam entre temporadas.
 
----
+## Arquivos
 
-## 🔎 Resultados
-
-- Há vários anos em que o piloto mais vitorioso **não estava na equipe mais vitoriosa**
-- Foram identificados os **anos em que o talento superou a máquina**
-- Criado o **ranking dos 10 maiores vencedores da F1**
-
-### 🧠 Conclusão
-
-O carro importa, mas o piloto também.  
-Alguns nomes se destacaram por vencer mesmo sem o melhor equipamento — e isso faz toda a diferença.
-
----
-
-## 📊 Visualizações
-
-- Gráfico de barras com os 10 pilotos mais vencedores
-- Comparações por ano entre pilotos e construtores
-- Ranking dos melhores pilotos
-
-> Veja o notebook completo com os gráficos e insights.
-![alt text](image.png)
----
-
-## 📁 Estrutura
-- Dados/ # Arquivos CSV do Kaggle
-- Imagens/ # Gráficos gerados
-- analise_formula1.ipynb # Jupyter Notebook com toda a análise
-- README.md
+- [Notebook execut?vel](analise_formula1.ipynb)
+- [Notebook HTML](notebook.html)
+- [P?gina do projeto](index.html)
+- CSVs usados pela an?lise nesta pasta.
