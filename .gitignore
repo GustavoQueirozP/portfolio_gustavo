@@ -4,3 +4,7 @@
 __pycache__/
 .venv/
 *.pyc
+.pytest-tmp*/
+.pytest_cache/
+.npm-cache/
+*-preview.png

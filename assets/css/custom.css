@@ -1,0 +1,40 @@
+/* Ajustes do portfólio; o CSS original do Editorial permanece intacto. */
+body { color: #505961; }
+a { color: #0069a8; }
+.button { color: #0069a8 !important; box-shadow: inset 0 0 0 2px #0069a8; }
+#header .logo { color: #505961; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.8em 1.8em; padding: 1.5em 0; }
+.site-nav a { color: #505961; }
+#banner .content { max-width: 65ch; }
+#banner h1 { font-size: clamp(2em, 3.5vw, 3.5em); }
+#banner .image.object { flex: 0 1 32%; min-width: 0; }
+#banner .image.object img { width: 100%; height: auto; object-fit: contain; object-position: top; }
+.posts .image img { height: 15em; object-fit: contain; }
+.posts h3 a { border-bottom: 0; }
+.actions { align-items: center; flex-wrap: wrap; gap: 0.7em 0; }
+.actions > li { max-width: 100%; }
+.status { font-weight: 600; color: #505961; }
+.case-page main { max-width: 78ch; }
+.case-page main h2 { margin-top: 1.8em; }
+.case-page figure { margin: 2em 0; }
+.case-page figure img { display: block; max-width: 100%; height: auto; }
+.case-page figcaption { margin-top: 0.8em; font-size: 0.9em; }
+dt { font-weight: 600; margin-top: 0.8em; }
+#footer { border-top: 1px solid #d6d9dc; padding: 2.5em 0; margin-top: 2em; }
+#footer .copyright { font-size: 0.9em; color: #505961; }
+ul.contact li { padding-top: 1.5em; padding-bottom: 0.5em; }
+ul.contact li::before { color: #0069a8; }
+a { text-underline-offset: 0.2em; }
+a:focus-visible { outline: 2px solid #0069a8; outline-offset: 5px; }
+::selection { background: #cce9fa; color: #242b32; }
+.skip-link { position: absolute; left: 1em; top: -5em; background: white; padding: 0.8em; z-index: 100; }
+.skip-link:focus { top: 1em; }
+@media screen and (max-width: 736px) {
+  .site-nav { gap: 0.8em 1.2em; }
+  #banner .image.object { max-width: 22em; }
+  .posts .image img { height: 12em; }
+  .button { white-space: normal; height: auto; min-height: 3.5em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
