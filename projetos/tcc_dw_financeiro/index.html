@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<!-- Editorial by HTML5 UP | html5up.net | CCA 3.0: html5up.net/license -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TCC — Data Warehouse Financeiro · Gustavo Queiroz</title>
+  <meta name="description" content="Um Data Warehouse para comparar sete empresas de tecnologia da B3: dados CVM, indicadores financeiros e projeções. Explore o app estático.">
+  <meta property="og:title" content="TCC — Data Warehouse Financeiro">
+  <meta property="og:description" content="Da CVM à análise financeira: modelo estrela, ETL e projeções em um aplicativo interativo.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230069a8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../../assets/css/custom.css">
+  <link rel="stylesheet" href="case.css">
+</head>
+<body class="case-page">
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="wrapper"><div id="main"><div class="inner">
+  <header id="header"><a href="../../index.html" class="logo"><strong>Portfólio de Projetos</strong> de Análise de Dados</a><ul class="icons"><li><a href="https://www.linkedin.com/in/gustavo-queiroz-pinto-0812751b4/">LinkedIn</a></li></ul></header>
+  <nav class="site-nav" aria-label="Navegação principal"><a href="../../index.html#projetos">Projetos em destaque</a><a href="../../index.html#analises">Análises</a><a href="../../index.html#habilidades">Habilidades</a><a href="../../index.html#experiencia">Experiência</a><a href="../../index.html#contato">Contato</a></nav>
+  <main id="conteudo"><section>
+    <header class="main"><h1>TCC — Data Warehouse Financeiro</h1></header>
+    <p class="case-intro">De demonstrações financeiras dispersas a uma visão comparável de sete empresas de tecnologia da B3. Um projeto de engenharia e análise de dados, com indicadores e modelos estatísticos acessíveis em um app.</p>
+    <ul class="actions"><li><a href="app/" class="button primary">Abrir o app</a></li><li><a href="#arquitetura">Conhecer a arquitetura</a></li></ul>
+    <p>A demonstração roda inteiramente no navegador e usa respostas capturadas da API em 24/11/2026. A interface foi reescrita e repaginada para publicação estática.</p>
+    <h2>O problema</h2>
+    <p>Como comparar rentabilidade, crescimento e estrutura financeira de empresas de tecnologia a partir de fontes com formatos e granularidades diferentes? O projeto reúne demonstrações da CVM e cotações em um Data Warehouse, calcula indicadores consistentes e permite explorar o histórico antes de interpretar projeções.</p>
+    <h2>Dados e recorte</h2>
+    <p>DFP da CVM dos exercícios de 2018–2025 e cotações de empresas da B3, obtidas via Yahoo Finance. O recorte público contém Bemobi (BMOB3), Intelbras (INTB3), Locaweb (LWSA3), Méliuz (CASH3), Neogrid (NGRD3), Positivo (POSI3) e TOTVS (TOTS3).</p>
+    <p>A cobertura varia conforme a empresa: há 50 registros anuais de indicadores individuais no período. A resposta agregada de indicadores também contém registros de comparação setorial. No app, as cotações são amostradas no último pregão de cada semana: 2.329 observações, com fechamento, volume do dia e médias móveis originais de 21 e 200 pregões.</p>
+    <h2 id="arquitetura">Arquitetura do Data Warehouse</h2>
+    <p>O modelo estrela conecta fatos a dimensões compartilhadas. Empresa e data permitem cruzar o desempenho anual com o comportamento dos preços; a dimensão macroeconômica está reservada para evolução do projeto.</p>
+    <figure aria-label="Modelo estrela do Data Warehouse">
+      <div class="warehouse"><div><h3>Dimensão empresa</h3><ul><li>Ticker e nome</li><li>Setor e subsetor</li><li>Segmento</li></ul></div><div class="facts"><h3>Tabelas de fatos</h3><ul><li>Cotações · diária</li><li>Demonstrações · anual</li><li>Indicadores · empresa / ano</li><li>Projeções · variável / modelo / ano</li></ul><small>Relacionamentos por chaves de empresa e data, conforme a granularidade de cada fato.</small></div><div><h3>Dimensão data</h3><ul><li>Data de calendário</li><li>Ano e mês</li><li>Trimestre</li></ul><h3>Dimensão macroeconômica</h3><p>Reservada para uso futuro.</p></div></div>
+      <figcaption>Representação lógica simplificada do modelo estrela. Cada fato preserva sua granularidade.</figcaption>
+    </figure>
+    <h2>Do ETL à projeção</h2>
+    <div class="pipeline" aria-label="Fluxo do processamento"><span>CVM + cotações</span><b aria-hidden="true">→</b><span>ETL em Python</span><b aria-hidden="true">→</b><span>PostgreSQL / DW</span><b aria-hidden="true">→</b><span>Indicadores</span><b aria-hidden="true">→</b><span>Modelos e app</span></div>
+    <p>A extração e o tratamento padronizam empresas, contas contábeis, datas e unidades. As tabelas dimensionais e de fatos recebem os dados; views SQL expõem medidas financeiras, múltiplos e rankings para a camada de análise.</p>
+    <p>ROE, ROA, margens, liquidez, endividamento e crescimento anual sustentam a comparação. O score de 0 a 10 combina ROE (30%), margem líquida (20%), crescimento de receita (20%), endividamento invertido (15%) e liquidez (15%); valores ausentes recebem nota neutra 5.</p>
+    <p>Regressão linear e ARIMA geram cenários de receita e lucro para 2026–2028. O preço médio anual é projetado por ARIMA a partir de uma série mensal. O app apresenta os intervalos de 95% e o R² de cada ajuste; a validação compara a projeção de preço de 2026 ao valor real parcial disponível na captura.</p>
+    <h2>Resultados observados na captura</h2>
+    <div class="case-results"><div><strong>R$ 17.503,13 mi</strong><span>Receita líquida somada das 7 empresas em 2025</span></div><div><strong>R$ 1.346,00 mi</strong><span>Lucro líquido somado das 7 empresas em 2025</span></div><div><strong>R² 0,962</strong><span>Regressão linear da receita da TOTVS</span></div></div>
+    <p>Para a TOTVS, a receita de 2025 na série de indicadores é de R$ 5.771,9 milhões. A regressão linear projeta R$ 6.134,4 milhões em 2026, com intervalo de 95% entre R$ 5.263,8 e R$ 7.005,0 milhões. O R² de 0,962 descreve o ajuste histórico, sem garantir esse resultado futuro.</p>
+    <p>Esses números vêm de <a href="app/dados/dashboard-executivo.json">dashboard-executivo.json</a>, <a href="app/dados/indicadores.json">indicadores.json</a> e <a href="app/dados/projecoes.json">projecoes.json</a>. O app permite conferir o recorte e comparar as empresas, sem depender de uma API em execução.</p>
+    <h2>Stack</h2>
+    <p>Projeto original: Python no ETL e nos modelos, SQL e PostgreSQL no DW, API Node.js e frontend React/Vite. Modelagem estatística com regressão linear e ARIMA. Demonstração pública: HTML, CSS e JavaScript, JSON local e ECharts 5, sem build.</p>
+    <h2>Limitações e próximos passos</h2>
+    <ul><li>A captura é estática. As cotações disponíveis terminam em maio de 2026; a data da captura não representa atualização das fontes até novembro.</li><li>Nem todas as empresas têm oito exercícios completos. Valores nulos e campos não finitos são exibidos como indisponíveis.</li><li>A amostragem semanal reduz o tamanho da publicação e não preserva oscilações dentro da semana. O volume exibido é do pregão amostrado.</li><li>Séries anuais curtas, mudanças de negócio e intervalos amplos limitam a interpretação dos modelos. R² alto não garante precisão fora da amostra.</li><li>A validação de 2026 usa um exercício incompleto. Ampliar testes fora da amostra e revisar modelos com novos dados são próximos passos.</li></ul>
+    <p>O conteúdo tem finalidade acadêmica e não constitui recomendação de investimento.</p>
+    <ul class="actions"><li><a href="app/" class="button primary">Abrir o app</a></li><li><a href="../../index.html#projetos">Voltar aos projetos</a></li></ul>
+  </section></main>
+  <footer id="footer"><p class="copyright">&copy; Gustavo Queiroz. Design: <a href="https://html5up.net">HTML5 UP</a> · <a href="https://html5up.net/license">CCA 3.0</a></p></footer>
+</div></div></div>
+</body></html>
