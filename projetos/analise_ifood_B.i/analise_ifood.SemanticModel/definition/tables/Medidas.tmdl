@@ -1,0 +1,164 @@
+table Medidas
+	lineageTag: f4671775-adcb-4c1f-9ad8-29ae8642af76
+
+	measure 'Faturamento Total' = SUM('public orders'[order_amount])
+		formatString: "R$" #,0.00;-"R$" #,0.00;"R$" #,0.00
+		lineageTag: 5d059318-cbd2-4512-bb05-9cb987460abf
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Total de Pedidos' = COUNT('public orders'[order_id])
+		formatString: #,0
+		lineageTag: 3d1615df-7649-407b-bbe6-f03882afb154
+
+	measure 'Ticket Médio' = DIVIDE([Faturamento Total], [Total de Pedidos])
+		formatString: "R$" #,0.00;-"R$" #,0.00;"R$" #,0.00
+		lineageTag: 19ee20ee-6a30-4227-ac3b-2d1e50b58582
+
+	measure 'Total Cancelados' =
+			CALCULATE(
+			    COUNT('public orders'[order_id]),
+			    'public orders'[order_status] = "CANCELED"
+			)
+		formatString: #,0
+		lineageTag: d1310b4d-4c82-4a57-8eb9-225c41480697
+
+	measure '% Cancelados' = DIVIDE([Total Cancelados], [Total de Pedidos])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 769530d1-fd09-4050-9117-74bc01df8f5c
+
+	measure 'Pedidos Concluídos' =
+			CALCULATE(
+			    COUNT('public orders'[order_id]),
+			    'public orders'[order_status] = "FINISHED"
+			)
+		formatString: #,0
+		lineageTag: e496b6c9-106a-4781-8af6-b163492b51ea
+
+	measure '% Concluídos' = DIVIDE([Pedidos Concluídos], [Total de Pedidos])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5ba3d1a8-de0b-4eae-90e8-ed5adc479c78
+
+	measure 'Faturamento por Segmento' =
+			CALCULATE(
+			    SUM('public orders'[order_amount]),
+			    ALLEXCEPT('public stores', 'public stores'[store_segment])
+			)
+		formatString: "R$" #,0.00;-"R$" #,0.00;"R$" #,0.00
+		lineageTag: 03fe085a-640a-4350-bd85-cffabf9bdaee
+
+	measure 'Total de Entregas' = COUNT('public deliveries'[delivery_id])
+		formatString: #,0
+		lineageTag: 2679b035-ec78-4aab-90da-3045178ddec5
+
+	measure 'Distância Média das Entregas' = ```
+			MEDIAN('public deliveries'[delivery_distance_meters]) / 1000
+			
+			```
+		formatString: #,0.00
+		lineageTag: 4ad3278b-30fc-478c-a3c2-cb5ef346bbc3
+
+	measure 'Pedidos por Canal' =
+			CALCULATE(
+			    COUNT('public orders'[order_id]),
+			    ALLEXCEPT('public channels', 'public channels'[channel_name])
+			)
+		formatString: #,0
+		lineageTag: 73a69fa4-7a62-4121-96fa-9074255734ea
+
+	measure 'Taxa de Conversão (%)' =
+			
+			DIVIDE(
+			    CALCULATE(COUNTROWS('public orders'), 'public orders'[order_status] = "APPROVED"),
+			    [Total de Pedidos],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 477ac485-4f59-4355-aff3-96a613356399
+
+	measure 'Ticket Médio por Segmento' = ```
+			
+			DIVIDE(
+			    SUM('public orders'[order_amount]),
+			    COUNT('public orders'[order_id])
+			)
+			
+			```
+		formatString: "R$" #,0.00;-"R$" #,0.00;"R$" #,0.00
+		lineageTag: d906cc2d-bfe1-4b6a-a7bb-bbc526c3722f
+
+	measure 'Faturamento Perdido' = ```
+			
+			CALCULATE(
+			    SUM('public orders'[order_amount]),
+			    'public orders'[order_status] = "CANCELED"
+			)
+			
+			```
+		formatString: "R$" #,0.00;-"R$" #,0.00;"R$" #,0.00
+		lineageTag: 4b0fc32c-b817-4bc8-b21c-ba96c8e56ee8
+
+	measure 'Cancelamentos por Hora' = ```
+			
+			CALCULATE(
+			    COUNTROWS('public orders'),
+			    'public orders'[order_status] = "CANCELED"
+			)
+			
+			```
+		formatString: #,0
+		lineageTag: 1e17ef51-a176-41bd-b60b-26934b849141
+
+	measure '% Faturamento por Segmento' = ```
+			
+			DIVIDE(
+			    CALCULATE(SUM('public orders'[order_amount])),
+			    CALCULATE(SUM('public orders'[order_amount]), ALL('public stores'[store_segment]))
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5eb65660-dcca-4e4d-b30a-c463ec47519c
+
+	measure EntregasConcluidas =
+			
+			CALCULATE(COUNT('public deliveries'[driver_id]), 'public deliveries'[delivery_status] = "DELIVERED")
+		formatString: #,0
+		lineageTag: 84091efc-9bc5-4685-956a-ec4c69944f5b
+
+	measure PercentualEntregasConcluidas =
+			
+			DIVIDE([EntregasConcluidas], [Total de Entregas], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d2200753-217c-4902-b767-8debff992f8d
+
+	measure MediaDistanciaPorModal = ```
+			
+			CALCULATE(
+			    MEDIAN('public deliveries'[delivery_distance_meters]) / 1000,
+			    ALLEXCEPT('public drivers', 'public drivers'[driver_modal])
+			)
+			
+			```
+		formatString: #,0.00
+		lineageTag: 81df6904-b4ac-4eac-b6e9-65e078d7e32b
+
+	column 'Coluna 1'
+		dataType: string
+		lineageTag: 63182b1a-fcf3-402b-a080-4a0349666640
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

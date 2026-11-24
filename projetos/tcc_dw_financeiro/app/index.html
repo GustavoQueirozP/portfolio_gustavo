@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore indicadores, cotações e projeções de sete empresas de tecnologia da B3 em uma demonstração estática do Data Warehouse Financeiro.">
+  <title>DW Financeiro — Demonstração</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230069a8'/%3E%3Cpath d='M7 23V15h4v8m3 0V10h4v13m3 0V6h4v17' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="app.css">
+  <script defer src="../../../assets/js/vendor/echarts.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para os dados</a>
+  <div class="demo">Versão de demonstração com dados de 24/11/2026 — CVM/B3, dados públicos</div>
+  <header class="masthead"><a class="brand" href="#visao">DW <strong>Financeiro</strong></a><a href="../">Sobre o projeto <span aria-hidden="true">↗</span></a></header>
+  <div class="layout">
+    <nav class="navigation" aria-label="Telas do aplicativo">
+      <a href="#visao">Visão executiva</a><a href="#historico">Histórico de indicadores</a><a href="#comparativo">Comparativo setorial</a><a href="#mercado">Mercado e cotações</a><a href="#projecoes">Projeções</a><a href="#confiabilidade">Confiabilidade dos modelos</a>
+      <p>7 empresas · Tecnologia<br>DFP 2018–2025</p>
+    </nav>
+    <main id="conteudo" tabindex="-1">
+      <header class="page-head"><h1 id="titulo">Visão executiva</h1><p id="descricao">Uma leitura do desempenho financeiro das empresas de tecnologia da B3.</p></header>
+      <form id="filtros" class="filters" aria-label="Filtros de dados"></form>
+      <div id="status" role="status">Carregando a captura de dados…</div>
+      <div id="painel"></div>
+      <footer>Fonte: CVM / B3 · Captura estática, sem atualização em tempo real.<br>Estudo acadêmico. Projeções não constituem recomendação de investimento.<br>Design: <a href="https://html5up.net">HTML5 UP</a> · <a href="../../../index.html">Portfólio de Gustavo Queiroz</a></footer>
+    </main>
+  </div>
+  <noscript>Ative o JavaScript para explorar os dados e os filtros desta demonstração.</noscript>
+</body>
+</html>

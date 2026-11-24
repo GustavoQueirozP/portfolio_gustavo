@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore pedidos, faturamento e entregas do iFood em um dashboard interativo com dados de janeiro a abril de 2021.">
+  <title>iFood · Dashboard | Gustavo</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="../../../assets/js/vendor/echarts.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="dashboard">
+    <header class="page-header">
+      <a href="../index.html">← Voltar ao case</a>
+      <h1>iFood: da venda à entrega</h1>
+      <p>Explore o volume de pedidos, a receita das lojas e a operação de entregas.</p>
+      <p class="source">Dados: iFood/Kaggle, jan–abr/2021</p>
+    </header>
+    <form id="filters" aria-label="Filtros do dashboard">
+      <div><label for="mes">Mês</label><select id="mes" name="mes" disabled><option value="">Todos os meses</option></select></div>
+      <div><label for="channel_type">Tipo de canal</label><select id="channel_type" name="channel_type" disabled><option value="">Todos os tipos</option></select></div>
+      <div><label for="store_segment">Segmento</label><select id="store_segment" name="store_segment" disabled><option value="">Todos os segmentos</option></select></div>
+      <button type="reset" disabled>Limpar filtros</button>
+    </form>
+    <p id="state" role="status" aria-live="polite">Carregando dados…</p>
+    <noscript><p>Ative o JavaScript para explorar os filtros e gráficos. As definições estão no <a href="LEIA-ME.md">guia dos dados</a>.</p></noscript>
+    <dl id="kpis" aria-label="Indicadores do recorte"></dl>
+    <p class="data-note">No modelo original, “concluídos” conta pedidos com status DELIVERED. A base de pedidos registra FINISHED e CANCELED; por isso, esse indicador é 0%. As entregas usam uma tabela e status próprios.</p>
+    <nav class="section-nav" aria-label="Seções do relatório"><a href="#visao">Visão geral</a><a href="#lojas">Lojas e segmentos</a><a href="#entregas">Entregas</a></nav>
+    <section id="visao" aria-labelledby="visao-title">
+      <h2 id="visao-title">Visão geral</h2>
+      <div class="chart-grid">
+        <article><h3>Pedidos por mês</h3><div id="chart-month" class="chart"></div></article>
+        <article><h3>Pedidos por status</h3><div id="chart-status" class="chart"></div></article>
+        <article><h3>Pedidos por hora</h3><div id="chart-hour" class="chart"></div></article>
+        <article><h3>Pedidos por canal · top 10</h3><div id="chart-channel" class="chart"></div></article>
+      </div>
+    </section>
+    <section id="lojas" aria-labelledby="lojas-title">
+      <h2 id="lojas-title">Lojas e segmentos</h2>
+      <div class="chart-grid">
+        <article><h3>Faturamento por loja · top 10</h3><div id="chart-store" class="chart chart-tall"></div></article>
+        <article><h3>Faturamento por segmento</h3><div id="chart-segment" class="chart chart-tall"></div></article>
+        <article class="wide"><h3>Pedidos nos hubs por cidade</h3><div id="chart-city" class="chart"></div></article>
+      </div>
+    </section>
+    <section id="entregas" aria-labelledby="entregas-title">
+      <h2 id="entregas-title">Entregas</h2>
+      <p>Uma entrega não equivale a um pedido. A distância média considera os registros com distância preenchida.</p>
+      <div class="chart-grid">
+        <article><h3>Entregas por tipo de entregador</h3><div id="chart-type" class="chart"></div></article>
+        <article><h3>Entregas por modal</h3><div id="chart-modal" class="chart"></div></article>
+        <article><h3>Distância média por modal (km)</h3><div id="chart-distance" class="chart"></div></article>
+        <article><h3>Entregas concluídas por modal</h3><div id="chart-completed" class="chart"></div></article>
+      </div>
+    </section>
+    <footer><p><a href="LEIA-ME.md">Definições dos indicadores e fonte</a> · <a href="../MODELO.md">Modelo do Power BI</a></p><p>Design: <a href="https://html5up.net">HTML5 UP</a></p></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+table 'public deliveries'
+	lineageTag: 64814e49-1a34-4be9-bb02-59f1dd194ad2
+
+	column delivery_id
+		dataType: string
+		isNullable: false
+		lineageTag: 07c2eceb-cde7-46d7-a421-4402850fafe4
+		summarizeBy: none
+		sourceColumn: delivery_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_order_id
+		dataType: string
+		lineageTag: 3daecb78-0c05-4c08-b4f1-f61d5472dd98
+		summarizeBy: none
+		sourceColumn: delivery_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_id
+		dataType: string
+		lineageTag: 853c99e6-7899-47e7-b5ab-6b265511087e
+		summarizeBy: none
+		sourceColumn: driver_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_distance_meters
+		dataType: double
+		lineageTag: 605edbfc-c5b3-45a3-bc37-26686072e9ff
+		summarizeBy: sum
+		sourceColumn: delivery_distance_meters
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column delivery_status
+		dataType: string
+		lineageTag: fd6e6aac-3892-46d9-8198-37f158ff60f3
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public deliveries' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "deliveries.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"delivery_id", "delivery_order_id", "driver_id", "delivery_distance_meters", "delivery_status"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"delivery_id", type text}, {"delivery_order_id", type text}, {"driver_id", type text}, {"delivery_distance_meters", type number}, {"delivery_status", type text}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,41 @@
+table 'public drivers'
+	lineageTag: 86a9c46f-62bb-48b4-9240-cb67422256ce
+
+	column driver_id
+		dataType: string
+		isNullable: false
+		lineageTag: 160d46e8-9178-4432-9f03-8b8b1efb7770
+		summarizeBy: none
+		sourceColumn: driver_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_modal
+		dataType: string
+		lineageTag: c751368a-d346-423d-9f6f-58f384805f53
+		summarizeBy: none
+		sourceColumn: driver_modal
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_type
+		dataType: string
+		lineageTag: 54e8b326-9b98-4676-91ff-2f895e6932f0
+		summarizeBy: none
+		sourceColumn: driver_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public drivers' = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "drivers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalhos, {"driver_id", "driver_modal", "driver_type"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"driver_id", type text}, {"driver_modal", type text}, {"driver_type", type text}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table
+

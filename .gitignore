@@ -1,0 +1,14 @@
+.claude/settings.local.json
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+*.pyc
+.pytest-tmp*/
+.pytest_cache/
+.npm-cache/
+*-preview.png
+
+# Power BI Project: cache e configurações locais
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

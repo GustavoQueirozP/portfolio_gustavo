@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "164fe6953b7a5b80e68d",
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "% Cancelados"
+                }
+              },
+              "queryRef": "Medidas.% Cancelados",
+              "nativeQueryRef": "% Cancelados",
+              "displayName": "Pedidos cancelados"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "position": {
+    "x": 961,
+    "y": 72,
+    "z": 1300,
+    "height": 84,
+    "width": 303,
+    "tabOrder": 1300
+  }
+}

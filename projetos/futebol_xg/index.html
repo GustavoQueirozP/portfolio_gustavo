@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<!-- Editorial by HTML5 UP | html5up.net | CCA 3.0: html5up.net/license -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Futebol: xG e xT com dados públicos — Gustavo Queiroz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="O que é uma boa chance e quem cria ameaça? Modelo de xG comparado à StatsBomb e rankings de xT em três torneios, com StatsBomb Open Data." />
+  <meta property="og:title" content="Futebol: xG e xT com dados públicos — Gustavo Queiroz" />
+  <meta property="og:description" content="Qualidade das chances, calibração do xG e criação de ameaça na Copa 2022, Euro 2024 e Copa América 2024." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/custom.css" />
+  <link rel="stylesheet" href="case.css" />
+</head>
+<body class="is-preload case-page">
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="wrapper"><div id="main"><div class="inner">
+  <header id="header">
+    <a href="../../index.html" class="logo"><strong>Portfólio de Projetos</strong> de Análise de Dados</a>
+    <ul class="icons"><li><a href="https://www.linkedin.com/in/gustavo-queiroz-pinto-0812751b4/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li></ul>
+  </header>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="../../index.html#projetos">Projetos em destaque</a>
+    <a href="../../index.html#analises">Análises</a>
+    <a href="../../index.html#habilidades">Habilidades</a>
+    <a href="../../index.html#experiencia">Experiência</a>
+    <a href="../../index.html#contato">Contato</a>
+  </nav>
+  <main id="conteudo"><section>
+    <header class="main"><h1>Futebol: xG e xT<br />com dados públicos</h1></header>
+    <p>O que é uma boa chance de gol — e quem cria ameaça antes da finalização? Este estudo usa eventos de jogo para estimar a qualidade dos chutes com <strong>Expected Goals (xG)</strong> e o valor da progressão da bola com <strong>Expected Threat (xT)</strong>.</p>
+    <p>Na avaliação fora do treino, o xG próprio alcançou AUC de <strong>0,7798</strong>, ante <strong>0,8014</strong> da referência StatsBomb. Nos rankings de xT por 90 minutos, Raphinha, Jérémy Doku e Ángel Di María lideram os recortes publicados de seus torneios.</p>
+    <div class="data-credit">
+      <a href="https://github.com/statsbomb/open-data"><img src="img/statsbomb.png" width="240" height="38" alt="StatsBomb, fornecedora dos dados abertos utilizados neste estudo" /></a>
+      <p><a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a></p>
+    </div>
+    <nav aria-label="Neste estudo"><p><a href="#dados">Dados</a> · <a href="#metodo">Método</a> · <a href="#resultados">Resultados do xG</a> · <a href="#rankings">Rankings de xT</a> · <a href="#limites">Limitações</a></p></nav>
+
+    <h2>Problema / pergunta</h2>
+    <p>Contar gols e assistências deixa de fora a qualidade das oportunidades e parte da construção ofensiva. O xG atribui a cada chute uma probabilidade de gol. O xT permite olhar para passes e conduções que levam a bola a zonas mais perigosas, mesmo quando a jogada não termina em chute.</p>
+    <p>A proposta é comparar um modelo próprio de xG com o xG fornecido pela StatsBomb nos mesmos chutes e identificar quem mais acrescenta ameaça com a bola em cada torneio.</p>
+
+    <h2 id="dados">Dados</h2>
+    <dl>
+      <dt>Fonte e condições de uso</dt>
+      <dd>Exclusivamente <a href="https://github.com/statsbomb/open-data">StatsBomb Open Data</a>: eventos e contexto das finalizações. Uso sujeito ao <a href="https://github.com/statsbomb/open-data/blob/master/LICENSE.pdf">Public Data User Agreement</a>; crédito e logo conforme o <a href="https://github.com/statsbomb/open-data#terms--conditions">README oficial</a>.</dd>
+      <dt>Treino</dt>
+      <dd>Premier League 2015/16, Copa do Mundo 2018 e Euro 2020. O README do projeto registra 12.826 finalizações no conjunto de treino; os pênaltis são tratados à parte no modelo.</dd>
+      <dt>Avaliação e torneios apresentados</dt>
+      <dd>Copa do Mundo 2022, Euro 2024 e Copa América 2024: 3.475 finalizações sem pênaltis, com 313 gols observados no conjunto de avaliação.</dd>
+      <dt>Granularidade e cobertura</dt>
+      <dd>Chutes para o xG; ações com bola para o xT; agregação por jogador nos rankings. Os relatórios consultados não documentam totais de partidas nem contagens agregadas de chutes separadas por torneio. A data de extração não está registrada nesses relatórios.</dd>
+    </dl>
+
+    <h2>Pipeline</h2>
+    <p>Os eventos são preparados para duas análises: finalizações com suas características geométricas e de contexto, e ações no formato SPADL para medir progressão. Os modelos aprendem nos torneios de treino e são aplicados às competições de avaliação. A etapa de relatório compara as previsões de xG com os gols observados e agrega o xT dos jogadores por 90 minutos.</p>
+
+    <h2 id="metodo">Método</h2>
+    <h3>xG: geometria e contexto do chute</h3>
+    <p>O modelo usa distância e ângulo de abertura do gol, deslocamentos longitudinal e lateral em relação ao gol, parte do corpo e situação da jogada. O contexto inclui adversários no cone entre chute e traves, presença do goleiro nesse cone, distância do goleiro ao chute e ao gol, adversário mais próximo e quantidade de adversários nas proximidades.</p>
+    <p>Essas posições vêm do <em>freeze frame</em> de evento fornecido pela StatsBomb: um retrato das posições no instante do chute. As marcações <code>one_on_one</code> e <code>open_goal</code> ficam fora das features.</p>
+    <p>O classificador é o <code>HistGradientBoostingClassifier</code> do scikit-learn, com variáveis numéricas e categóricas. O ajuste exclui pênaltis e usa parada antecipada com 15% de validação interna. Quando há pênaltis para prever, eles recebem a taxa de conversão observada no treino.</p>
+    <h3>Validação e calibração</h3>
+    <p>As três competições de teste não participam do treino. A avaliação sem pênaltis compara ROC AUC, log loss e Brier nos mesmos chutes para os dois modelos. AUC mede a capacidade de ordenar chances; log loss e Brier avaliam o erro das probabilidades, sendo melhores quando menores.</p>
+    <p>A curva de calibração compara o xG médio previsto em cada faixa com a frequência real de gols. Ela é um diagnóstico das probabilidades; o método não aplica uma recalibração posterior. A proximidade dos totais de xG e gols, sozinha, não demonstra calibração em todas as faixas.</p>
+    <h3>xT: o valor de mudar a bola de lugar</h3>
+    <p>O método de Expected Threat de Karun Singh, implementado com socceraction, divide o campo em uma grade de <strong>16 × 12</strong>. Cada célula estima a probabilidade de a equipe marcar nas próximas ações. Passes e conduções bem-sucedidos recebem a diferença <code>xT(destino) − xT(origem)</code>, com interpolação bilinear entre células.</p>
+    <figure>
+      <a href="img/xt-grade.webp" aria-label="Abrir grade de xT em tamanho completo"><img src="img/xt-grade.webp" width="1350" height="1020" loading="lazy" decoding="async" alt="Grade de xT 16 por 12, com ataque para a direita e maior ameaça nas células centrais próximas ao gol adversário" /></a>
+      <figcaption>Superfície de xT treinada em Premier League 2015/16, Copa 2018 e Euro 2020. Fonte: relatório de modelos, <code>xt_grade.png</code>. <a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a>.</figcaption>
+    </figure>
+
+    <h2 id="resultados">Resultados: o xG próprio e a referência</h2>
+    <p>A StatsBomb teve AUC maior e erros menores no teste. O modelo próprio estimou 317,7383 gols esperados para 313 gols observados; a StatsBomb estimou 315,2701. Esses resultados descrevem este conjunto de torneios.</p>
+    <div class="table-wrapper" role="region" aria-label="Comparação dos modelos de xG" tabindex="0">
+      <table>
+        <caption>Avaliação em 3.475 chutes sem pênaltis — Copa 2022, Euro 2024 e Copa América 2024</caption>
+        <thead><tr><th scope="col">Métrica</th><th scope="col">xG próprio</th><th scope="col">StatsBomb</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">ROC AUC ↑</th><td>0,7798</td><td>0,8014</td></tr>
+          <tr><th scope="row">Log loss ↓</th><td>0,2561</td><td>0,2454</td></tr>
+          <tr><th scope="row">Brier ↓</th><td>0,0722</td><td>0,0687</td></tr>
+          <tr><th scope="row">xG acumulado</th><td>317,7383</td><td>315,2701</td></tr>
+          <tr><th scope="row">Gols observados</th><td>313</td><td>313</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Fonte dos valores: relatório de modelos, <code>xg_avaliacao.csv</code>. O denominador de chutes está na figura de calibração; os torneios de treino e o volume de treino estão no README do projeto.</p>
+    <figure>
+      <a href="img/xg-calibracao.webp" aria-label="Abrir gráfico de calibração em tamanho completo"><img src="img/xg-calibracao.webp" width="975" height="900" loading="lazy" decoding="async" alt="Curvas de calibração do xG próprio e StatsBomb em 3.475 chutes: probabilidades previstas versus taxa real de gols, com diagonal de calibração ideal" /></a>
+      <figcaption>Na curva própria, a faixa com previsão média próxima de 0,36 tem frequência de gols abaixo da diagonal; isso ilustra um desvio que o total agregado esconde. Fonte: <code>xg_calibracao.png</code>. <a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a>.</figcaption>
+    </figure>
+
+    <h2 id="rankings">Resultados: quem cria ameaça com a bola?</h2>
+    <p>Os gráficos ordenam o xT de passes e conduções por 90 minutos, com <strong>mínimo de 270 minutos</strong>. Os valores abaixo reproduzem o arredondamento das figuras. A métrica mede progressão com bola; sua leitura depende da função do jogador e do contexto da equipe.</p>
+    <h3>Copa do Mundo 2022</h3>
+    <p><strong>Raphinha: 0,31 xT/90</strong>, seguido por Kevin De Bruyne e Ángel Di María, ambos exibidos com 0,30. O arredondamento das barras não significa igualdade exata entre os dois.</p>
+    <figure>
+      <a href="img/xt-copa-2022.webp" aria-label="Abrir ranking de xT da Copa 2022 em tamanho completo"><img src="img/xt-copa-2022.webp" width="1200" height="1065" loading="lazy" decoding="async" alt="Ranking de xT por 90 minutos na Copa 2022, mínimo de 270 minutos: Raphinha lidera com 0,31, seguido de De Bruyne e Di María com 0,30" /></a>
+      <figcaption>Copa 2022 · passes e conduções · mínimo de 270 minutos. Fonte: <code>wc-2022/top_xt.png</code>. <a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a>.</figcaption>
+    </figure>
+    <h3>Euro 2024</h3>
+    <p><strong>Jérémy Doku: 0,35 xT/90</strong>, à frente de Lamine Yamal (0,32) e Cody Gakpo (0,26) no recorte publicado.</p>
+    <figure>
+      <a href="img/xt-euro-2024.webp" aria-label="Abrir ranking de xT da Euro 2024 em tamanho completo"><img src="img/xt-euro-2024.webp" width="1200" height="1065" loading="lazy" decoding="async" alt="Ranking de xT por 90 minutos na Euro 2024, mínimo de 270 minutos: Doku lidera com 0,35, Yamal tem 0,32 e Gakpo 0,26" /></a>
+      <figcaption>Euro 2024 · passes e conduções · mínimo de 270 minutos. Fonte: <code>euro-2024/top_xt.png</code>. <a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a>.</figcaption>
+    </figure>
+    <h3>Copa América 2024</h3>
+    <p><strong>Ángel Di María: 0,26 xT/90</strong>, seguido de Yeferson Soteldo e Lionel Messi, ambos exibidos com 0,20.</p>
+    <figure>
+      <a href="img/xt-copa-america-2024.webp" aria-label="Abrir ranking de xT da Copa América 2024 em tamanho completo"><img src="img/xt-copa-america-2024.webp" width="1200" height="1065" loading="lazy" decoding="async" alt="Ranking de xT por 90 minutos na Copa América 2024, mínimo de 270 minutos: Di María lidera com 0,26, seguido de Soteldo e Messi com 0,20" /></a>
+      <figcaption>Copa América 2024 · passes e conduções · mínimo de 270 minutos. Fonte: <code>copa-america-2024/top_xt.png</code>. <a href="https://github.com/statsbomb/open-data">Data: StatsBomb Open Data</a>.</figcaption>
+    </figure>
+
+    <h2>Stack</h2>
+    <p>Python, pandas e NumPy na preparação e agregação; scikit-learn no xG e na avaliação; socceraction/SPADL no xT; SciPy na interpolação da grade; Matplotlib na geração dos gráficos.</p>
+    <h2 id="limites">Limitações e próximos passos</h2>
+    <ul>
+      <li>São dados de evento, sem tracking contínuo. As posições no instante do chute não descrevem toda a movimentação, a ocupação de espaços ou as ações sem bola.</li>
+      <li>O treino e o teste usam uma amostra de competições. O resultado nas seleções desses torneios não garante desempenho equivalente em outras ligas ou temporadas.</li>
+      <li>O mínimo de 270 minutos reduz participações muito curtas nos rankings, mas o xT/90 ainda depende da amostra, da posse de bola e do papel tático.</li>
+      <li>O xT descrito atribui valor a movimentos bem-sucedidos. Não representa, sozinho, toda a contribuição ofensiva ou o custo das perdas de bola.</li>
+      <li>A curva de calibração não traz intervalos de incerteza. O relatório não fornece uma métrica exclusiva de calibração nem desempenho separado por torneio.</li>
+    </ul>
+    <p>Próximos passos: ampliar a avaliação para outras temporadas do StatsBomb Open Data, publicar métricas e cobertura por competição, estimar incerteza das curvas e testar recalibração em uma amostra separada. Nos rankings, comparar xT/90 por posição e contexto de posse.</p>
+    <h2>Fontes</h2>
+    <p>As figuras e métricas são dos relatórios do projeto, com as origens indicadas nas legendas e no <a href="FONTES.md">registro de fontes e imagens</a>. A fonte pública dos eventos é o <a href="https://github.com/statsbomb/open-data">StatsBomb Open Data</a>.</p>
+    <ul class="actions"><li><a href="../../index.html#projetos" class="button">Voltar aos projetos</a></li></ul>
+  </section></main>
+  <footer id="footer"><p class="copyright">&copy; Gustavo Queiroz. Design: <a href="https://html5up.net">HTML5 UP</a> · <a href="https://html5up.net/license">CCA 3.0</a></p></footer>
+</div></div></div>
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/browser.min.js"></script>
+<script src="../../assets/js/breakpoints.min.js"></script>
+<script src="../../assets/js/util.js"></script>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

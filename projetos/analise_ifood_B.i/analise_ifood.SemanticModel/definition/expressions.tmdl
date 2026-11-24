@@ -1,0 +1,5 @@
+expression PastaDados = "C:\caminho\para\portfolio_gustavo\projetos\analise_ifood\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: c2ab09a6-9600-4ca7-9c98-ceba99396162
+
+	annotation PBI_ResultType = Text
+

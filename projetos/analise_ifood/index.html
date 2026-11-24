@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<!-- Editorial by HTML5 UP | html5up.net | CCA 3.0: html5up.net/license -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>iFood — Exploração de entregas — Gustavo Queiroz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Como pedidos, canais, lojas e entregadores se relacionam com faturamento e operação de entregas?" />
+  <meta property="og:title" content="iFood — Exploração de entregas — Gustavo Queiroz" />
+  <meta property="og:description" content="Como pedidos, canais, lojas e entregadores se relacionam com faturamento e operação de entregas?" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/custom.css" />
+</head>
+<body class="is-preload case-page">
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="wrapper"><div id="main"><div class="inner">
+  <header id="header">
+    <a href="../../index.html" class="logo"><strong>Portfólio de Projetos</strong> de Análise de Dados</a>
+    <ul class="icons"><li><a href="https://www.linkedin.com/in/gustavo-queiroz-pinto-0812751b4/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li></ul>
+  </header>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="../../index.html#projetos">Projetos em destaque</a>
+    <a href="../../index.html#analises">Análises</a>
+    <a href="../../index.html#habilidades">Habilidades</a>
+    <a href="../../index.html#experiencia">Experiência</a>
+    <a href="../../index.html#contato">Contato</a>
+  </nav>
+  <main id="conteudo"><section><header class="main"><h1>iFood — Exploração de entregas</h1></header><p><a href="../../index.html#projetos">Voltar ao portfólio</a></p>
+    <h2>Problema / pergunta</h2><p>Como pedidos, canais, lojas e entregadores se relacionam com faturamento e operação de entregas?</p>
+    <h2>Dados</h2><p>Delivery Center, operação multicanal de entregas. O nome histórico da pasta é iFood; a amostra não representa toda a operação do iFood. Sete CSVs locais: pedidos, pagamentos, entregas, entregadores, lojas, canais e hubs.</p><dl><dt>Fonte</dt><dd><a href="https://www.kaggle.com/datasets/nosbielcs/brazilian-delivery-center">Delivery Center: Food &amp; Goods orders in Brazil, publicado por nosbielcs no Kaggle</a>.</dd><dt>Licença dos dados</dt><dd>“Data files © Original Authors” (<code>copyright-authors</code>, conforme documentado no notebook em 24/11/2026). Os direitos permanecem dos autores; o catálogo não concede licença aberta de redistribuição. A licença do template não cobre os dados.</dd><dt>Período e volume</dt><dd>01/01/2021 a 30/04/2021; 368.999 pedidos. Unidade principal: um pedido, sem multiplicação por pagamentos ou tentativas de entrega.</dd></dl>
+    <h2>Pipeline</h2><p>Leitura dos CSVs com tipos e datas explícitos; validação de chaves e junções many-to-one. Pagamentos são agregados por chave separadamente. Consultas SQL em DuckDB em memória, sem servidor PostgreSQL.</p><h2>Método</h2><p>Valor bruto dos pedidos inclui todos os status, inclusive cancelados, para reconciliação com o dashboard; não é receita líquida realizada. Mediana e P90 do ciclo usam finalizados com ciclo positivo, comparando o conjunto bruto com o recorte até 180 minutos. A análise por modal exige uma única entrega concluída por pedido.</p>
+    <h2>Resultados</h2><ul>
+      <li><strong>Base comercial:</strong> 368.999 pedidos e R$ 38.800.730,73 em valor bruto; 16.979 cancelamentos (4,60%). O valor bruto inclui cancelados.</li>
+      <li><strong>Concentração:</strong> FOOD PLACE reúne 63,67% da receita; FOOD soma 69,65%; GOLDEN SHOPPING soma 9,74%. As dez maiores lojas representam 29,73%.</li>
+      <li><strong>Pico e ciclo:</strong> às 15h são 50.471 pedidos, com P90 operacional de 69,98 min. No recorte até 180 min, mediana de 41,12 min e P90 de 67,55 min; no bruto positivo, 42,18 min e 83,17 min.</li>
+      <li><strong>Custo por modal:</strong> BIKER: R$ 5,03/pedido, 1,07 km e R$ 4,68/km (92.635 pedidos); MOTOBOY: R$ 8,14/pedido, 3,34 km e R$ 2,43/km (231.226 pedidos). Cobertura: 323.861 pedidos, 92,00% dos finalizados. A comparação não mede economia causal ao trocar o modal.</li>
+      <li><strong>Qualidade financeira:</strong> o maior pedido é R$ 1.788.306,11 (4,61% do total); 48.818 pedidos têm mais de um registro de pagamento. Auditar antes de projetar receita realizada.</li>
+    </ul><p>Os achados são calculados no notebook executado abaixo.</p>
+    <h2>Stack</h2><p>Python · pandas · NumPy · matplotlib · SQL · DuckDB · Jupyter</p><h2>Limitações e próximos passos</h2><p>Quatro meses de 2021 não representam a operação atual. O limite de 180 min pode retirar atrasos legítimos e pedidos programados. A amostra por modal exclui vínculos ambíguos e mede custo registrado no pedido, sem isolar remuneração ou efeito causal. Auditar o maior pedido e reconciliar pagamentos; investigar capacidade por horário e hub com fila, entregadores ativos e controles por segmento.</p>
+    <h2>Links</h2><ul><li><a href="notebook.html">Abrir notebook HTML executado</a></li><li><a href="https://github.com/GustavoQueirozP/portfolio_gustavo/tree/main/projetos/analise_ifood">Ver código público</a></li></ul></section></main>
+  <footer id="footer"><p class="copyright">&copy; Gustavo Queiroz. Design: <a href="https://html5up.net">HTML5 UP</a> · <a href="https://html5up.net/license">CCA 3.0</a></p></footer>
+</div></div></div>
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/browser.min.js"></script>
+<script src="../../assets/js/breakpoints.min.js"></script>
+<script src="../../assets/js/util.js"></script>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

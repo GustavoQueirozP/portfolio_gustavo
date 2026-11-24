@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "c51ae469b520c11c1b24",
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Total de Pedidos"
+                }
+              },
+              "queryRef": "Medidas.Total de Pedidos",
+              "nativeQueryRef": "Total de Pedidos",
+              "displayName": "Pedidos"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "position": {
+    "x": 331,
+    "y": 72,
+    "z": 1100,
+    "height": 84,
+    "width": 303,
+    "tabOrder": 1100
+  }
+}
